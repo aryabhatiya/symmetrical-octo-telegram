@@ -1,0 +1,22 @@
+{
+  "name": "FutureApp4",
+  "interface": "rum",
+  "envRoots": {
+    "dev": "env/dev",
+    "prod": "env/prod"
+  },
+  "modules": [],
+  "imageDirs": [
+    "images"
+  ],
+  "platforms": {
+    "ios": {
+      "host": "localhost",
+      "modules": []
+    },
+    "android": {
+      "host": "10.0.3.2",
+      "modules": []
+    }
+  }
+}

@@ -1,0 +1,136 @@
+* Iphone Installation
+** Run Osx On Vmware On Ubuntu: Install Mac Os X Sierra 10.12 on Vmware On Ubuntu
+*** Edit the VMX file and add
+#+BEGIN_SRC
+smc.version= "0"
+#+END_SRC
+
+#+BEGIN_SRC
+sudo pacman  -S unrar
+#+END_SRC
+*** for virtual box
+https://www.youtube.com/watch?v=pVc6rxk3OUM
+#+BEGIN_SRC shell
+npm install -g react-native-cli
+react-native init FutureApp
+cd Futureapp
+react-navtive run-ios
+#+END_SRC
+
+* Android Installation
+[[https://www.youtube.com/watch?v=2EGDIOpp088][** How to install a Android development environment on Arch linux and Arch linux based distros]]
+** [[https://wiki.archlinux.org/index.php/android][Arch Wiki]]
+
+Note: If you are running a 64-bit system, make sure the multilib repository is enabled to avoid "error: target not found: lib32-*" error messages.
+
+*** Aur Installation
+| android-platform           | AUR  |
+| android-sdk                | AUR  |
+| android-sdk-platform-tools | AUR  |
+| android-sdk-build-tools    | AUR  |
+| android-studio             | AUR  |
+| android-tools              | AUR  |
+| android-udev               | AUR  |
+| genymotion                 | AUR  |
+| linux-headers              | AUR* |
+
+for linux-headers* check uname -a first
+
+*** Adding Groups
+
+Android-sdk will be installed on /opt/android-sdk. This folder has root permissions,
+so keep in mind to run sdk manager as root, otherwise you will not be able to modify
+anything in this directory. If you intend to use it as a regular user,
+create the Android sdk users group:
+
+#+BEGIN_SRC bash
+ groupadd sdkusers
+ gpasswd -a xen1 sdkusers
+ chown -R :sdkusers /opt/android-sdk/
+ chmod -R g+w /opt/android-sdk/
+#+END_SRC
+
+Re-login or as <user> log your terminal in to the newly created group:
+#+BEGIN_SRC bash
+newgrp sdkusers
+#+END_SRC
+
+**** Android Debug Bridge (ADB)
+Tip: For some devices, you may have to enable MTP on the device, before ADB will work. Some other devices require enable PTP mode to work.
+Tip: Many devices' udev rules are included in libmtp, so if you have this installed, the following steps may not be necessary.
+
+***** Enable USB Debugging on your phone or device:
+****** Jelly Bean (4.2) and newer:
+*******  Go to Settings -->
+   About Phone tap “Build Number” 7 times until you get a popup that you have become a developer.
+******* Then go to Settings
+         --> Developer --> USB debugging and enable it.
+      The device will ask to allow the computer with its fingerprint to connect.
+      allowing it permanent will copy $HOME/.android/adbkey.pub onto the devices /data/misc/adb/adb_keys folder.
+****** Older versions:
+This is usually done from Settings --> Applications --> Development --> USB debugging. Reboot the phone after checking this option to make sure USB debugging is enabled.
+
+*** Runing Android Studio
+#+BEGIN_SRC bash
+export ANDROID_HOME=/opt/android-sdk
+#+END_SRC
+
+#+BEGIN_SRC bash
+android-studio
+#+END_SRC
+*** React Native
+for arch linux usefull video [[https://www.youtube.com/watch?v=M70Xebbj4Qk][Archlinux ReactNative]]
+[[https://facebook.github.io/react-native/releases/0.23/docs/android-setup.html][Android Setup in Facebook page]]
+#+BEGIN_SRC shell
+npm install -g react-native-cli
+react-native init FutureApp
+cd Futureapp
+react-navtive run-android
+#+END_SRC
+
+*** React Native Clojuescript
+[[https://www.youtube.com/watch?v=ELM_eKZXl3M][Using Clojurescript to launch iOS/Android apps to 1M users - Emin Hasanov]]
+
+#+BEGIN_SRC shell
+npm install -g re-natal
+re-natal init FutureApp2
+cd furee-app2
+react-native run-android
+#+END_SRC
+**** get started with your new app
+first cd into its directory:
+
+cd future-app2
+
+**** Run iOS app:
+react-native run-ios > /dev/null
+
+**** To use figwheel
+re-natal use-figwheel
+lein figwheel ios
+
+**** Reload the app in simulator (⌘ + R)
+
+**** At the REPL prompt type this:
+(in-ns 'future-app2.ios.core)
+
+Changes you make via the REPL or
+by changing your .cljs files should appear live.
+
+**** Try this command as an example
+(dispatch [:set-greeting "Hello Native World!"])
+To use figwheel type:
+re-natal use-figwheel
+lein figwheel ios
+
+Reload the app in simulator (⌘ + R)
+
+At the REPL prompt type this:
+(in-ns 'future-app4.ios.core)
+
+Changes you make via the REPL or by changing your .cljs files should appear live.
+
+Try this command as an example:
+(swap! app-state assoc :greeting "Hello Clojure in iOS and Android with Rum!")
+
+✔ Done

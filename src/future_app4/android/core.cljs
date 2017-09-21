@@ -12,28 +12,30 @@
 (def app-registry (.-AppRegistry ReactNative))
 (def view (partial create-element (.-View ReactNative)))
 (def input (partial create-element (.-TextInput ReactNative)))
-(def text (partial create-element (.-Text ReactNative)))
+(def text  (partial create-element (.-Text ReactNative)))
 (def image (partial create-element (.-Image ReactNative)))
 (def touchable-highlight (partial create-element (.-TouchableHighlight ReactNative)))
 
 (def logo-img (js/require "./images/cljs.png"))
 
+
 (defn alert [title]
   (.alert (.-Alert ReactNative) title))
 
-(defonce app-state (atom {:greeting "Hello Clojure in iOS and Android!"}))
+(defonce app-state (atom {:greeting "MD. ASHIK"}))
 
 (defc AppRoot < rum/reactive [state]
-  (view {:style {:flexDirection "column" :margin 40 :alignItems "center" :backgroundColor "#ddd" }}
-        (text {:style {:fontSize 30 :fontWeight "100" :marginBottom 20 :textAlign "center" :color "blue"}}
+  (view {:style {:flexDirection "column" :margin 40 :alignItems "center" :backgroundColor "#92819f" }}
+        (text {:style {:fontSize 30 :fontWeight "100" :marginBottom 20 :textAlign "center" :color "#C49BAB"}}
               (:greeting (rum/react state)))
         (image {:source logo-img
                 :style  {:width 80 :height 80 :marginBottom 30}})
-        (touchable-highlight {:style   {:backgroundColor "#999" :padding 10 :borderRadius 5}
+        (touchable-highlight {:style   {:backgroundColor "#E7A5A0" :padding 10 :borderRadius 5}
                               :onPress #(alert "HELLO!")}
-                             (text {:style {:color "white" :textAlign "center" :fontWeight "bold"}} "press me"))
+                            (text {:style {:color "white" :textAlign "center" :fontWeight "bold"}} "press me"))
         (input {:style {:height 40
                         :width 100
+                        :color "#FFBB85"
                         }
                 :onChangeText (fn [text]
                                 (swap! app-state assoc :input text))})
